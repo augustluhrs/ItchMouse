@@ -3,7 +3,6 @@
 // https://github.com/orgs/Programmable-Air
 //
 // sketch by August Luhrs for Itch Mouse w/ Arnab Chakravarty
-// 
 //
 // PCB v0.3/v0.4
 
@@ -16,7 +15,7 @@ Adafruit_NeoPixel pixels = Adafruit_NeoPixel(3, neopixelPin, NEO_GRB + NEO_KHZ80
 #define DEBUG 1
 
 int atmospheric_pressure = 405; // should be around 508, 405 when tested
-int threshold = 10; // 10 too much, flickers unless hard press?
+int threshold = 10; // 10 too much, flickers unless hard press
 int itchRate = 10000; //every X000 seconds -- could later make it reduce gradually
 //int itchCount;
 int blowDuration = 3000; //how long to keep the pump on
@@ -28,7 +27,6 @@ bool ventIsOpen = false;
 
 void setup() {
   initializePins();
-
   pixels.begin();
   pixels.show();
 
@@ -40,6 +38,9 @@ void setup() {
 
    //for itch timer
    startMillis = millis();
+
+   //mouse functionality for click
+//   Mouse.begin(); //moved to allow cursor movement while not clicking
 }
 
 void loop() {
@@ -55,6 +56,10 @@ void loop() {
       setValve(3, OPEN);
       ventIsOpen = true;
       ventMillis = millis();
+      Mouse.begin();
+      Mouse.click();
+      Mouse.end();
+      
     }
 //    delay(500);
 //    setValve(3, CLOSE);
