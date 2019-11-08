@@ -55,6 +55,7 @@ void setup() {
             strip.setPixelColor(i, 200, 255, 150); 
     }
     strip.show();
+  //beginning inflation for 15 seconds
     blowAlil(15000);
 }
 
